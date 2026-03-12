@@ -31,15 +31,15 @@
 /* LED
  *------------------------------------------------------------------*/
 #define LEDS_NUMBER           1  // red LED
-#define LED_PRIMARY_PIN       _PINNUM(0, 24)
+#define LED_PRIMARY_PIN       _PINNUM(0, 26)
 #define LED_STATE_ON          0
 
 /*------------------------------------------------------------------*/
 /* BUTTON
  *------------------------------------------------------------------*/
 #define BUTTONS_NUMBER        2
-#define BUTTON_1              _PINNUM(1, 1)  // D2 switch
-#define BUTTON_2              _PINNUM(1, 8)  // D3 switch
+#define BUTTON_1              _PINNUM(1, 12u)  // D2 switch
+#define BUTTON_2              _PINNUM(1, 13u)  // D3 switch
 #define BUTTON_PULL           NRF_GPIO_PIN_PULLUP
 
 //--------------------------------------------------------------------+
@@ -51,9 +51,14 @@
 //--------------------------------------------------------------------+
 // USB
 //--------------------------------------------------------------------+
-#define USB_DESC_VID           0x239A
-#define USB_DESC_UF2_PID       0x0029
-#define USB_DESC_CDC_ONLY_PID  0x002A
+
+#define USB_DESC_VID           0xd3e0
+#define USB_DESC_UF2_PID       0x0e5b
+#define USB_DESC_CDC_ONLY_PID  0x005c
+
+// #define USB_DESC_VID           0x239A
+// #define USB_DESC_UF2_PID       0x0029
+// #define USB_DESC_CDC_ONLY_PID  0x002A
 
 //------------- UF2 -------------//
 #define UF2_PRODUCT_NAME   "Halberd"
@@ -61,4 +66,4 @@
 #define UF2_BOARD_ID       "nRF52840-halberd"
 #define UF2_INDEX_URL      "https://www.dwengo.org"
 
-#endif // _ITSY_NRF52840_H
+#endif 
