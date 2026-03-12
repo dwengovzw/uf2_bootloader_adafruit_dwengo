@@ -43,6 +43,15 @@ endif
 GIT_VERSION := $(shell git describe --dirty --always --tags)
 GIT_SUBMODULE_VERSIONS := $(shell git submodule status | cut -d" " -f3,4 | paste -s -d" " -)
 
+# BOOTLOADER_VERSION must be semantic x.y.z to derive MK_BOOTLOADER_VERSION.
+# On forks without matching tags, git describe may return a commit hash.
+GIT_BASE_VERSION := $(word 1,$(subst -, ,$(GIT_VERSION)))
+ifeq ($(shell printf '%s\n' "$(GIT_BASE_VERSION)" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+$$' && echo 1),1)
+BOOTLOADER_VERSION ?= $(GIT_BASE_VERSION)
+else
+BOOTLOADER_VERSION ?= 0.0.0
+endif
+
 # compiled file name
 OUT_NAME = $(BOARD)_bootloader-$(GIT_VERSION)
 
@@ -321,7 +330,7 @@ CFLAGS += -DUF2_VERSION_BASE='"$(GIT_VERSION)"'
 CFLAGS += -DUF2_VERSION='"$(GIT_VERSION) $(GIT_SUBMODULE_VERSIONS)"'
 CFLAGS += -DBLEDIS_FW_VERSION='"$(GIT_VERSION) $(SD_NAME) $(SD_VERSION)"'
 
-_VER = $(subst ., ,$(word 1, $(subst -, ,$(GIT_VERSION))))
+_VER = $(subst ., ,$(BOOTLOADER_VERSION))
 CFLAGS += -DMK_BOOTLOADER_VERSION='($(word 1,$(_VER)) << 16) + ($(word 2,$(_VER)) << 8) + $(word 3,$(_VER))'
 
 # Debug option use RTT for printf

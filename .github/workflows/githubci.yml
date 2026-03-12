@@ -49,8 +49,12 @@ jobs:
 
     - name: Build
       run: |
-        make BOARD=${{ matrix.board }} all
-        make BOARD=${{ matrix.board }} copy-artifact
+        BOOTLOADER_VERSION="${GITHUB_REF_NAME#v}"
+        if ! [[ "$BOOTLOADER_VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+          BOOTLOADER_VERSION="0.0.0"
+        fi
+        make BOARD=${{ matrix.board }} BOOTLOADER_VERSION=$BOOTLOADER_VERSION all
+        make BOARD=${{ matrix.board }} BOOTLOADER_VERSION=$BOOTLOADER_VERSION copy-artifact
 
     - uses: actions/upload-artifact@v4
       with:
