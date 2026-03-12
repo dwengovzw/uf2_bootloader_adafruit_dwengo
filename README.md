@@ -4,21 +4,21 @@
 
 1. Get a Segger j-link programmer mini
 2. Install the dependencies:
-  - ARM GCC
-  - Nordic's [nRF5x Command Line Tools](https://www.nordicsemi.com/Software-and-Tools/Development-Tools/nRF-Command-Line-Tools)
-  - [Python IntelHex](https://pypi.org/project/IntelHex/)
-  - The UF2 conversion script: [Python conversion script](https://github.com/Microsoft/uf2/blob/master/utils/uf2conv.py)
-  - make
-  - Adafruit nrfUtil (pip3 install --user adafruit-nrfutil)
+    - ARM GCC
+    - Nordic's [nRF5x Command Line Tools](https://www.nordicsemi.com/Software-and-Tools/Development-Tools/nRF-Command-Line-Tools)
+    - [Python IntelHex](https://pypi.org/project/IntelHex/)
+    - The UF2 conversion script: [Python conversion script](https://github.com/Microsoft/uf2/blob/master/utils/uf2conv.py)
+    - make
+    - Adafruit nrfUtil (pip3 install --user adafruit-nrfutil)
 3. Build the application:
-  - make BOARD=halberd_nrf52840_dwengo clean
-  - make BOARD=halberd_nrf52840_dwengo all
+    - make BOARD=halberd_nrf52840_dwengo clean
+    - make BOARD=halberd_nrf52840_dwengo all
 4. Connect the board to the computer using the J-link programmer.
 5. Connect the board to a power source using the usb-c connector.
 6. Flash SoftDevice (will also erase chip):
-  - make BOARD=feather_nrf52840_express flash-sd
+    - make BOARD=feather_nrf52840_express flash-sd
 7. Flash bootloader:
-  - make BOARD=feather_nrf52840_express all
+    - make BOARD=feather_nrf52840_express all
 
 
 DONE!
