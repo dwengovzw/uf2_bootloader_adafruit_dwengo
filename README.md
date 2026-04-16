@@ -16,9 +16,9 @@
 4. Connect the board to the computer using the J-link programmer.
 5. Connect the board to a power source using the usb-c connector.
 6. Flash SoftDevice (will also erase chip):
-    - make BOARD=feather_nrf52840_express flash-sd
+    - make BOARD=halberd_nrf52840_dwengo flash-sd
 7. Flash bootloader:
-    - make BOARD=feather_nrf52840_express all
+    - make BOARD=halberd_nrf52840_dwengo flash
 
 
 DONE!
